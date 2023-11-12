@@ -1,0 +1,6 @@
+output/
+weights/
+wandb/
+__pycache__
+main.ipynb
+test.ipynb
