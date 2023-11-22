@@ -4,3 +4,7 @@ wandb/
 __pycache__
 main.ipynb
 test.ipynb
+runs/
+*.pth
+cifar10
+*.pkl
