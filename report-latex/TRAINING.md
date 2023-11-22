@@ -4,15 +4,30 @@
 
 Report sẽ được nộp trong ngày **MON 27/11/2023**.
 
-Workflow:
+**Workflow**:
 
-1. Mỗi người clone Project
+1. Clone project Project này về máy và tạo 1 branch riêng cho mình.
 
-    ![Alt text](image.png)
+    ```bash
+    git clone https://github.com/fuisl/LIA-introCS-proj.git
+    git checkout -b <branch-name>
+    ```
 
-2. Mình tự fill vô phần của mình theo đúng [format](#training)
+2. Mình tự fill vô phần của mình theo đúng [format](#training). Lưu ý, chỉ edit trên phần `\section{Introduction}` (thay tên và thêm content)
 
-3. Vào ngày **SUN 26/11/2023**, mình sẽ review lại report và ghép các phần lại với nhau
+    Mọi người sẽ làm report trên branch của mình. Chỉ edit file [`report.tex`](report.tex) và [`bibliography.bib`](bibliography.bib). Mọi người có thể tham khảo file [`report.pdf`](report.pdf) để xem kết quả.
+
+3. Sau khi hoàn thành, mọi người commit changes và push changes lên branch của mình.
+
+    ```bash
+    git add .
+    git commit -m "feat: add report section Introduction"
+    git push origin <branch-name>
+    ```
+
+    Sau đó, mọi người sẽ tạo 1 pull request để merge vào branch `master`. Mọi người có thể tham khảo cách tạo pull request ở [link](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) này.
+
+4. Vào ngày **SUN 26/11/2023**, mình sẽ review lại report và ghép các phần lại với nhau
 
 > *Lưu ý: Mọi người chú ý format. Nếu không đúng format thì lúc ghép vô sẽ rất khó khăn, lúc đó mọi người phải tự sửa lại theo đúng format -> mất thời gian.*
 
@@ -28,7 +43,7 @@ Tiêu đề mục chính của report *(mục lớn nhất)*.
 \section{Introduction}
 ```
 
-![Alt text](image-1.png)
+![Alt text](assets/image-1.png)
 
 > *Note: tạo tiêu đề không cần thêm số. Tiêu đề nên là `\session{Introduction}`, không phải `\session{1. Introduction}`.*
 
@@ -40,7 +55,7 @@ Tiêu đề phụ của report. Cái này mọi người sẽ phải tự sắp 
 \subsection{Introduction}
 ```
 
-![Alt text](image-2.png)
+![Alt text](assets/image-2.png)
 
 > ***WARNING:** mặc dù có thể tạo heading nhỏ hơn (1.1.1. Sub Subsecion), nhưng mình không khuyến khích mọi người dùng feature này, thay vào đó mọi người nên dùng **paragraph title***
 
@@ -50,7 +65,7 @@ Tiêu đề phụ của report. Cái này mọi người sẽ phải tự sắp 
 \paragraph{This is a paragraph title.} This is an example of a paragraph
 ```
 
-![Alt text](image-3.png)
+![Alt text](assets/image-3.png)
 
 > *Nếu structure bài viết của mọi người phức tạp, mọi người có thể thông báo lên group để mình hỗ trợ set heading & tiêu đề.*
 
@@ -73,7 +88,7 @@ Bình thường mọi người sẽ cite bằng citation tiêu chuẩn *(xem ph�
 > ```
 >
 > *thì cuối trang đó sẽ tự add footnote vô.*
-> | ![Alt text](image-4.png) | ![Alt text](image-5.png) |
+> | ![Alt text](assets/image-4.png) | ![Alt text](assets/image-5.png) |
 > | ------------------------ | ------------------------ |
 
 #### Picture
@@ -83,7 +98,7 @@ Hình ảnh sẽ được add vô report bằng format sau:
 ```latex
 \begin{figure}
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{image.png}
+    \includegraphics[width=0.8\textwidth]{assets/image.png}
     \caption{This is a picture.}
     \label{fig:picture}
 \end{center}
@@ -92,7 +107,7 @@ Hình ảnh sẽ được add vô report bằng format sau:
 
 Hình ảnh sẽ được add vô report vào 1 cột được chia sẵn.
 
-![Alt text](image-9.png)
+![Alt text](assets/image-9.png)
 
 Cái này sẽ add 1 picture vô report, có caption và label. Mọi người có thể dùng label để ref lại hình ảnh đó trong report.
 
@@ -107,7 +122,7 @@ Trong trường hợp mọi người muốn add hình ảnh vào giữa màn hì
 ```latex
 \begin{figure*}
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{image.png}
+    \includegraphics[width=0.8\textwidth]{assets/image.png}
     \caption{This is a picture.}
     \label{fig:picture}
 \end{center}
@@ -148,7 +163,7 @@ Mọi người dùng `$$ equation $$` để wrap math equation *(tách riêng th
 $$f(\mathbf{x}; \mathbf{w}) = \sum_{i=1}^{n} w_ix_i.$$
 ```
 
-![Alt text](image-6.png)
+![Alt text](assets/image-6.png)
 
 hoặc mình có thể dùng `$ equation $` để wrap math equation *(Đưa vào 1 dòng văn bản*).
 
@@ -156,12 +171,12 @@ hoặc mình có thể dùng `$ equation $` để wrap math equation *(Đưa và
 The equation $f(\mathbf{x}; \mathbf{w}) = \sum_{i=1}^{n} w_ix_i$ is a linear function.
 ```
 
-![Alt text](image-7.png)
+![Alt text](assets/image-7.png)
 
 > *Tip #1: Cheatsheet latex math: [link](https://quickref.me/latex)*.
 >
 > *Tip #2: Dùng ChatGPT để render code. Prompt đúng như thế này để bỏ vô cho đúng:*
-> ![Alt text](image-8.png)
+> ![Alt text](assets/image-8.png)
 
 ### 3. Formating
 
@@ -188,7 +203,7 @@ Related work should be discussed here. This is an example of a citation \cite{na
 corresponding references into the bibliography.bib file.
 ```
 
-![Alt text](image-10.png)
+![Alt text](assets/image-10.png)
 
 Format `bibliography.bib`:
 
