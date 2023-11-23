@@ -10,6 +10,7 @@ Report sẽ được nộp trong ngày **MON 27/11/2023**.
 
     ```bash
     git clone https://github.com/fuisl/LIA-introCS-proj.git
+    git checkout report
     git checkout -b <branch-name>
     ```
 
