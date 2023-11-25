@@ -1,12 +1,13 @@
 \documentclass[10pt,twocolumn,letterpaper]{article}
-
+\usepackage{array}
 \usepackage{statcourse}
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
+\usepackage{booktabs}
+\usepackage{multirow}
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
@@ -71,20 +72,42 @@ Bui Duc Xuan\\
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction}
+\section{Literature reivew}
 
-Human cognitive processes, mirroring the intricacies of an advanced supercomputer, rely on the nuanced interaction of neurons to perceive diverse stimuli such as digits, numbers, words, and images. This cognitive evolution spans from its early stages to the present era, with a notable milestone being the introduction of not only Generative AI but also other groundbreaking advancements in artificial intelligence.
+Deep learning methodologies have been widely applied in the detection and classification of images , with a multitude of research focusing on improving their precision and effectiveness. Each research study is unique, considering factors such as the specific type of tasks, the deep learning methods used, the performance metrics applied, and the datasets chosen. These factors could potentially affect the applicability of the models to different datasets. By categorizing these studies based on the specific type of tasks and the deep learning method used, we can identify similarities and differences, which could provide valuable insights for our current research. A significant number of studies have utilized convolutional neural networks (CNN) for object classification . For example, Krizhevsky et al.\cite{Alexnet} demonstrated the power of deep convolutional neural networks with AlexNet, a CNN with 8 convolutional layers and shows that it achieves a top-1 error rate of 15.3\% on the ImageNet classification task. This success paved the way for the development of deeper CNNs such as VGG and ResNet. Simonyan et al.\cite{VGG}  present a novel architecture for convolutional neural networks (CNNs) that enables the training of extremely deep networks (VGGNets)  and achieved state-of-the-art results,with a top-1 error rate of 5.1\% on the ImageNet classification task. Similarly, Zhang et al.\cite{ResNet} introduced the Deep Residual Learning (DRL) framework, which achieves record-breaking results  attaining a 3.57\% top-1 error rate for 152 layers on the ImageNet classification task. DRL introduces residual connections, which allow for the construction of much deeper networks without vanishing gradients. Despite these promising results , these CNNs models are limited in training and data related. Some studies employ other pipelines which include advanced techniques to get a better result in classification. Redmon et al.\cite{Yolo} used an unified framework algorithm, YOLO. With the assistance of the framework, it performs both object detection and classification in a single pass of the input image. YOLO is able to execute within a short period of time , while achieving comparable accuracy. These four models have been extensively studied and evaluated in the literature. For example, a comprehensive review of deep learning models for object detection by Vaswani et al. (2020)\cite{Review} compared the performance of AlexNet, VGG, ResNet, and YOLO on a variety of object detection datasets. The review found that ResNet and YOLO generally outperformed AlexNet and VGG on all datasets. These models have been shown to achieve state-of-the-art results on a variety of image recognition and object detection tasks. However, AlexNet, VGG, ResNet, and YOLO are still widely used in practice due to their simplicity, robustness, and accuracy.
 
-In an era defined by the rapid advancement of artificial intelligence, the field of machine learning and deep learning stands as a beacon of innovation, transforming the way computers perceive and interact with their surroundings. This project delves into the intricate world of these cutting-edge technologies, specifically focusing on computer vision—a domain crucial for tasks ranging from image recognition to object detection. With the four chosen prominent models - Alexnet, VGG\footnote{\url{https://arxiv.org/abs/1409.1556}}, Resnet\cite{simonyan2015deep}, and YOLO, we are seeking to unravel the complexities and reveal the engine behind these widely recognized models.
 
-The comprehensive AI taxonomy proposed by IBM outlines seven distinct types, with Generative AI representing the initial stride in the AI continuum. Within this evolving landscape, Convolutional Neural Networks (CNNs) \footnote{\url{https://arxiv.org/pdf/1511.08458.pdf}} have garnered particular attention and proven to be a pivotal model. CNNs stand out for their remarkable application in various domains, excelling in tasks such as image classification, object detection, and pattern recognition.
+\section{Insightful summarization}
 
-In the realm of machine learning (ML), CNNs have risen to prominence, offering a competitive edge over traditional regression and statistical models, particularly in tasks requiring image analysis. Their efficacy is underscored by their ability to automatically learn hierarchical features from data, making them well-suited for complex visual tasks.
 
-This paradigm shift exemplifies the dynamic nature of AI, where models like CNNs, designed to emulate the human visual system, have become indispensable tools in addressing intricate challenges across diverse disciplines.
+\begin{table}[h]
+\centering
+\label{tab:small_table}
+\scalebox{0.8}{\begin{tabular}{|c|c|c|c|c|}
+\hline
 
-The rest of this paper is organized as follows:
+Models & Release Date & Number of layers & Params (M) & Flops(G)\footnote{}\\
+\hline
+        AlexNet & 2012 & 8 & 61 & 0.715 \\
+        VGGNet & 2014 & 16 or 19 & 138-144 & 15.5-20 \\
+        ResNet-50 & 2015 & 50 & 25.56 & 4.12 \\
+        ResNet101 & 2015 & 101 & 44.55 & 7.85 \\
+        Yolov5x-cis & 2020 & 19 & 48.1 & 15.9 \\
+        Yolov8x-cls & 2023 & 53 & 57.4 & 154.8 \\
+\hline
+\end{tabular}}
+\caption{Data Comparision}
+\end{table}
+In addition to the aspects mentioned above, models that were created afterwards fixed the weaknesses of their predecessors. For instance,  AlexNet lacks explicit regularization techniques, making it prone to overfitting. VGGNet incorporates dropout, a regularization technique that randomly drops out a certain percentage of neurons during training. This forces the model to learn more robust and generalizable features, reducing overfitting and improving generalization performance. Although AlexNet implies dropout as well but only in the first two fully connected layers, VGGNet has it in both convolutional and connected layers. However, these two plain networks still confront the degradation problem when it comes to extending their architectures. Hence, Resnet was made to solve the vanishing gradients problem as the layers went deeper and deeper. Yolo is more like a pipeline that includes CNN models as backbone and others applies advanced techniques into training. Leading to a significant increase in FLOPs in terms of the numbers of params. 
 
+
+
+
+
+
+
+
+\footnotetext{GigaFlop (or Gflop) is a billion FLOPS. Here we take the data of the models that train with ImageNet dataset}
 {\small
 \bibliographystyle{ieee}
 \bibliography{bibliography.bib}
