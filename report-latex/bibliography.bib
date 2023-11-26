@@ -1,76 +1,3 @@
-@article{hassan2019computer,
-  title={Computer vs human brain: An analytical approach and overview},
-  author={Hassan, Muhammad Atif and Rizvi, Qaim Mehdi},
-  journal={Computer},
-  volume={6},
-  pages={580--583},
-  year={2019}
-}
-@mics{simonyan2015deep,
-      title={Very Deep Convolutional Networks for Large-Scale Image Recognition}, 
-      author={Karen Simonyan and Andrew Zisserman},
-      year={2015},
-      eprint={1409.1556},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-@mics{he2015deep,
-      title={Deep Residual Learning for Image Recognition}, 
-      author={Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
-      year={2015},
-      eprint={1512.03385},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-@article{article,
-author = {Lecun, Yann and Bottou, Leon and Bengio, Y. and Haffner, Patrick},
-year = {1998},
-month = {12},
-pages = {2278 - 2324},
-title = {Gradient-Based Learning Applied to Document Recognition},
-volume = {86},
-journal = {Proceedings of the IEEE},
-doi = {10.1109/5.726791}
-}
-@article{alex2012deep,
-author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E.},
-title = {ImageNet Classification with Deep Convolutional Neural Networks},
-year = {2017},
-issue_date = {June 2017},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {60},
-number = {6},
-issn = {0001-0782},
-url = {https://doi.org/10.1145/3065386},
-doi = {10.1145/3065386},
-abstract = {We trained a large, deep convolutional neural network to classify the 1.2 million high-resolution images in the ImageNet LSVRC-2010 contest into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 37.5\% and 17.0\%, respectively, which is considerably better than the previous state-of-the-art. The neural network, which has 60 million parameters and 650,000 neurons, consists of five convolutional layers, some of which are followed by max-pooling layers, and three fully connected layers with a final 1000-way softmax. To make training faster, we used non-saturating neurons and a very efficient GPU implementation of the convolution operation. To reduce overfitting in the fully connected layers we employed a recently developed regularization method called "dropout" that proved to be very effective. We also entered a variant of this model in the ILSVRC-2012 competition and achieved a winning top-5 test error rate of 15.3\%, compared to 26.2\% achieved by the second-best entry.},
-journal = {Commun. ACM},
-month = {may},
-pages = {84–90},
-numpages = {7}
-}
-@software{yolov5,
-  title = {YOLOv5 by Ultralytics},
-  author = {Glenn Jocher},
-  year = {2020},
-  version = {7.0},
-  license = {AGPL-3.0},
-  url = {https://github.com/ultralytics/yolov5},
-  doi = {10.5281/zenodo.3908559},
-  orcid = {0000-0001-5950-6979}
-}
-@inproceedings{Alexnet,
- author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
- booktitle = {Advances in Neural Information Processing Systems},
- editor = {F. Pereira and C.J. Burges and L. Bottou and K.Q. Weinberger},
- pages = {},
- publisher = {Curran Associates, Inc.},
- title = {ImageNet Classification with Deep Convolutional Neural Networks},
- url = {https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf},
- volume = {25},
- year = {2012}
-}
 @article{VGG,
 author = {Simonyan, Karen and Zisserman, Andrew},
 year = {2014},
@@ -79,29 +6,94 @@ pages = {},
 title = {Very Deep Convolutional Networks for Large-Scale Image Recognition},
 journal = {arXiv 1409.1556}
 }
-@inproceedings{ResNet,
-author = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
-year = {2016},
-month = {06},
-pages = {770-778},
-title = {Deep Residual Learning for Image Recognition},
-doi = {10.1109/CVPR.2016.90}
+@misc{ResNet,
+      title={Deep Residual Learning for Image Recognition}, 
+      author={Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+      year={2015},
+      eprint={1512.03385},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
-@inproceedings{Yolo,
-author = {Redmon, Joseph and Divvala, Santosh and Girshick, Ross and Farhadi, Ali},
-year = {2016},
-month = {06},
-pages = {779-788},
-title = {You Only Look Once: Unified, Real-Time Object Detection},
-doi = {10.1109/CVPR.2016.91}
-}
-@article{Review,
-author = {Zhao, Zhong-Qiu and Zheng, Peng and Xu, Shou-Tao and Wu, Xindong},
+@article{overfitting_overview,
+doi = {10.1088/1742-6596/1168/2/022022},
+url = {https://dx.doi.org/10.1088/1742-6596/1168/2/022022},
 year = {2019},
-month = {01},
-pages = {1-21},
-title = {Object Detection With Deep Learning: A Review},
-volume = {PP},
-journal = {IEEE Transactions on Neural Networks and Learning Systems},
-doi = {10.1109/TNNLS.2018.2876865}
+month = {feb},
+publisher = {IOP Publishing},
+volume = {1168},
+number = {2},
+pages = {022022},
+author = {Xue Ying},
+title = {An Overview of Overfitting and its Solutions},
+journal = {Journal of Physics: Conference Series},
+abstract = {Overfitting is a fundamental issue in supervised machine learning which prevents us from perfectly generalizing the models to well fit observed data on training data, as well as unseen data on testing set. Because of the presence of noise, the limited size of training set, and the complexity of classifiers, overfitting happens. This paper is going to talk about overfitting from the perspectives of causes and solutions. To reduce the effects of overfitting, various strategies are proposed to address to these causes: 1) “early-stopping” strategy is introduced to prevent overfitting by stopping training before the performance stops optimize; 2) “network-reduction” strategy is used to exclude the noises in training set; 3) “data-expansion” strategy is proposed for complicated models to fine-tune the hyper-parameters sets with a great amount of data; and 4) “regularization” strategy is proposed to guarantee models performance to a great extent while dealing with real world issues by feature-selection, and by distinguishing more useful and less useful features.}
+}
+@misc{visoai, title={Deep residual networks (ResNet, RESNET50) - 2024 guide}, url={https://viso.ai/deep-learning/resnet-residual-neural-network/}, journal={viso.ai}, publisher={viso}, author={visoai}, year={2023}, month={Nov}} 
+@misc{Datagen_2023, title={ResNet: The Basics and 3 ResNet Extensions}, url={https://datagen.tech/guides/computer-vision/resnet/}, journal={Datagen}, author={Datagen}, publisher={Datagen}, year={2023}, month={May}} 
+@misc{GeeksforGeeks_2023, title={Residual networks (resnet) - deep learning}, url={https://www.geeksforgeeks.org/residual-networks-resnet-deep-learning/}, journal={GeeksforGeeks}, publisher={GeeksforGeeks}, author={GeeksforGeeks}, year={2023}, month={Jan}} 
+
+@InProceedings{exp_vanishing_grad_1,
+  title = 	 {Understanding the difficulty of training deep feedforward neural networks},
+  author = 	 {Glorot, Xavier and Bengio, Yoshua},
+  booktitle = 	 {Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {249--256},
+  year = 	 {2010},
+  editor = 	 {Teh, Yee Whye and Titterington, Mike},
+  volume = 	 {9},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Chia Laguna Resort, Sardinia, Italy},
+  month = 	 {13--15 May},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf},
+  url = 	 {https://proceedings.mlr.press/v9/glorot10a.html},
+  abstract = 	 {Whereas before 2006 it appears that deep multi-layer neural networks were not successfully trained, since then several algorithms have been shown to successfully train them, with experimental results showing the superiority of deeper vs less deep architectures. All these experimental results were obtained with new initialization or training mechanisms. Our objective here is to understand better why standard gradient descent from random initialization is doing so poorly with deep neural networks, to better understand these recent relative successes and help design better algorithms in the future.  We first observe the influence of the non-linear activations functions. We find that the logistic sigmoid activation is unsuited for deep networks with random initialization because of its mean value, which can drive especially the top hidden layer into saturation. Surprisingly, we find that saturated units can move out of saturation by themselves, albeit slowly, and explaining the plateaus sometimes seen when training neural networks. We find that a new non-linearity that saturates less can often be beneficial. Finally, we study how activations and gradients vary across layers and during training, with the idea that training may be more difficult when the singular values of the Jacobian associated with each layer are far from 1.  Based on these considerations, we propose a new initialization scheme that brings substantially faster convergence.}
+}
+@article{exp_vanishing_grad_2,
+  author={Bengio, Y. and Simard, P. and Frasconi, P.},
+  journal={IEEE Transactions on Neural Networks}, 
+  title={Learning long-term dependencies with gradient descent is difficult}, 
+  year={1994},
+  volume={5},
+  number={2},
+  pages={157-166},
+  doi={10.1109/72.279181}}
+@misc{ResNeXt,
+      title={Aggregated Residual Transformations for Deep Neural Networks}, 
+      author={Saining Xie and Ross Girshick and Piotr Dollár and Zhuowen Tu and Kaiming He},
+      year={2017},
+      eprint={1611.05431},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@misc{DenseNet,
+      title={Densely Connected Convolutional Networks}, 
+      author={Gao Huang and Zhuang Liu and Laurens van der Maaten and Kilian Q. Weinberger},
+      year={2018},
+      eprint={1608.06993},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@misc{Transformer,
+      title={Attention Is All You Need}, 
+      author={Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and Lukasz Kaiser and Illia Polosukhin},
+      year={2023},
+      eprint={1706.03762},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+@misc{ViT,
+      title={An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale}, 
+      author={Alexey Dosovitskiy and Lucas Beyer and Alexander Kolesnikov and Dirk Weissenborn and Xiaohua Zhai and Thomas Unterthiner and Mostafa Dehghani and Matthias Minderer and Georg Heigold and Sylvain Gelly and Jakob Uszkoreit and Neil Houlsby},
+      year={2021},
+      eprint={2010.11929},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@misc{Swin,
+      title={Swin Transformer: Hierarchical Vision Transformer using Shifted Windows}, 
+      author={Ze Liu and Yutong Lin and Yue Cao and Han Hu and Yixuan Wei and Zheng Zhang and Stephen Lin and Baining Guo},
+      year={2021},
+      eprint={2103.14030},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
