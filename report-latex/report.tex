@@ -85,6 +85,7 @@ This paradigm shift exemplifies the dynamic nature of AI, where models like CNNs
 
 The rest of this paper is organized as follows:
 
+
 \paragraph{Literature review} Before delving into the specific machine learning models, it is crucial to contextualize this study within the existing body of knowledge. The literature review section provides a comprehensive overview of relevant research, identifying key advancements, methodologies, and challenges in the field of image recognition and machine learning. By synthesizing existing literature, we aim to establish a foundation for understanding the evolution of these models and highlight gaps that our study seeks to address.
 
 \paragraph{Models} The following section explores four machine learning models-Alexnet, VGGNet, ResNet, and YOLO\@. We delve into their architectures, training nuances, and some key highlight that makes each of the models different.
@@ -108,18 +109,18 @@ Deep learning methodologies have been widely applied in the detection and classi
         \centering
         \label{tab:small_table}
         \scalebox{0.8}{\begin{tabular}{|c|c|c|c|c|}
-                        \hline
-
-                        Models      & Release Date & Number of layers & Params (M) & Flops(G)\footnote{} \\
-                        \hline
-                        AlexNet     & 2012         & 8                & 61         & 0.715               \\
-                        VGGNet      & 2014         & 16 or 19         & 138-144    & 15.5-20             \\
-                        ResNet-50   & 2015         & 50               & 25.56      & 4.12                \\
-                        ResNet101   & 2015         & 101              & 44.55      & 7.85                \\
-                        Yolov5x-cis & 2020         & 19               & 48.1       & 15.9                \\
-                        Yolov8x-cls & 2023         & 53               & 57.4       & 154.8               \\
-                        \hline
-                \end{tabular}}
+                \hline
+                
+                Models      & Release Date & Number of layers & Params (M) & Flops(G)\footnote{} \\
+                \hline
+                AlexNet     & 2012         & 8                & 61         & 0.715               \\
+                VGGNet      & 2014         & 16 or 19         & 138-144    & 15.5-20             \\
+                ResNet-50   & 2015         & 50               & 25.56      & 4.12                \\
+                ResNet101   & 2015         & 101              & 44.55      & 7.85                \\
+                Yolov5x-cis & 2020         & 19               & 48.1       & 15.9                \\
+                Yolov8x-cls & 2023         & 53               & 57.4       & 154.8               \\
+                \hline
+        \end{tabular}}
         \caption{Data Comparision}
 \end{table}
 In addition to the aspects mentioned above, models that were created afterwards fixed the weaknesses of their predecessors. For instance,  AlexNet lacks explicit regularization techniques, making it prone to overfitting. VGGNet incorporates dropout, a regularization technique that randomly drops out a certain percentage of neurons during training. This forces the model to learn more robust and generalizable features, reducing overfitting and improving generalization performance. Although AlexNet implies dropout as well but only in the first two fully connected layers, VGGNet has it in both convolutional and connected layers. However, these two plain networks still confront the degradation problem when it comes to extending their architectures. Hence, Resnet was made to solve the vanishing gradients problem as the layers went deeper and deeper. Yolo is more like a pipeline that includes CNN models as backbone and others applies advanced techniques into training. Leading to a significant increase in FLOPs in terms of the numbers of params.
@@ -132,9 +133,120 @@ In addition to the aspects mentioned above, models that were created afterwards 
 
 
 \footnotetext{GigaFlop (or Gflop) is a billion FLOPS. Here we take the data of the models that train with ImageNet dataset}
+
+\section{Agile Scrum in Brief}
+Agile Scrum is a dynamic project management framework designed for teams developing complex products. Rooted in Agile principles, Scrum emphasizes iterative progress, collaboration, and adaptability. With roles like Product Owner, Scrum Master, and Development Team, Scrum fosters clear communication and shared ownership. Key ceremonies, such as Sprint Planning and Daily Scrum, keep the team focused, and artifacts like the Product Backlog ensure transparent progress. Agile Scrum is widely used for its ability to deliver incremental value, respond to change, and enhance overall project efficiency.
+
+\section{Development Cycle}
+
+In the dynamic landscape of project management, the Agile framework, particularly Scrum, has emerged as a beacon for teams seeking efficient, collaborative, and adaptable work methodologies. Our 5-week Scrum journey began with an ambitious goal: exploring the convergence of CNNs and AI models for performance comparison. Over the course of five weeks, we carefully followed the Scrum workflow to discover three different AI models—Yolo, AlexNet, VGG, and ResNet. This method guided us through the exploration, smoothly transitioning from research and scoping to the implementation phase.
+
+\subsection{Week 1: Research and Project Scope Definition (22/10 - 28/10)}
+This week was pivotal as we delved into extensive research, culminating in the definition of our project scope and the formation of three specialized teams, each dedicated to a distinct AI model: YOLO, AlexNet, VGG, and ResNet. Here are ours activities:
+
+\paragraph{Research Exploration} The week started with a thorough exploration of the details of CNNs and how they are used in AI. Team members conducted extensive research, examining the strengths, weaknesses, and specific applications of well-known models like YOLO, AlexNet, VGG, and ResNet. This phase was essential for gaining a detailed understanding of the varied capabilities these models bring to the table.
+
+\paragraph{Project Scope Definition}
+Building on the insights gained from the research phase, the team collaborated to define the project scope. Clear and concise objectives were outlined, emphasizing the unique contributions that each AI model could make to the overarching project. This step ensured that the team had a unified vision, setting the direction for the subsequent sprints.
+
+\paragraph{Team Formation}
+With the project scope defined, the next step was to form specialized teams, each assigned to one of the chosen AI models. This approach allowed for a focused and in-depth exploration of each model's capabilities. The YOLO team, the AlexNet team, the VGG team, and the ResNet team were formed, with members possessing complementary skills and expertise.
+
+\paragraph{Initial Sprint Planning}
+To kick off the Scrum framework, the teams engaged in initial sprint planning sessions. Tasks were allocated based on individual strengths, ensuring a balanced distribution of responsibilities. The teams set the groundwork for the upcoming sprints, aligning their efforts with the overarching project goals.
+
+\subsection{Week 2: First Implementation and Model Training (29/10 - 4/11)}
+With our project scope defined and teams divided, the second week of our 5-week Scrum journey marked the initiation of the implementation phase. This stage focused on the practical application of our research findings as we began the process of training each AI model—Yolo, AlexNet, VGG, and ResNet.
+
+\paragraph{Model Training Sessions}
+A significant portion of the week was dedicated to hands-on model training sessions. Each specialized team delved into the specifics of training their assigned model, exploring parameters, and optimizing configurations. This phase was crucial for refining our understanding of the practical nuances associated with YOLO, AlexNet, VGG, and ResNet.
+
+\paragraph{Continuous Learning and Adaptation}
+As the model training progressed, our teams embraced a culture of continuous learning and adaptation. Daily stand-ups became forums for sharing insights, addressing challenges, and refining strategies. This iterative approach allowed us to adjust our methods in real-time, ensuring optimal outcomes during the implementation phase.
+
+\paragraph{Documentation and Progress Tracking}
+At the same time, keeping detailed records and tracking our progress were crucial during this implementation phase. Every team documented their training steps, noted any changes, and recorded significant results. This not only gave us a reference for future use but also added transparency and accountability to the entire project.
+
+\subsection{Week 3: Parameter Adjustment and Model Comparison (5/11 - 11/11)}
+In the third week of our 5-week Scrum expedition, our focus shifted to fine-tuning the parameters of each AI model and conducting a comprehensive comparison. This crucial phase aimed to optimize the performance of YOLO, AlexNet, VGG, and ResNet while facilitating an insightful evaluation of their individual strengths and weaknesses.
+
+\paragraph{Parameter Fine-Tuning}
+The week kicked off with teams delving into the meticulous process of adjusting parameters for each AI model. This fine-tuning aimed to enhance the models' efficiency, accuracy, and overall performance. Iterative adjustments were made based on the feedback loop established in the preceding weeks.
+
+\paragraph{Comparative Analysis}
+With the models optimized, the teams engaged in a rigorous comparative analysis. This involved evaluating the performance metrics, such as precision, recall, and processing speed, to discern the distinctive features and trade-offs of YOLO, AlexNet, VGG, and ResNet. Comparative analysis sessions provided valuable insights into the practical implications of each model.
+
+\paragraph{Team Collaboration on Findings}
+Recognizing the significance of collaboration, teams convened to share their findings and insights. Cross-team discussions facilitated a broader understanding of the nuanced aspects of each model's performance. This collaborative approach encouraged the pooling of knowledge and contributed to a holistic view of the comparative results.
+
+\paragraph{Adaptation to Insights}
+As comparative analysis unfolded, teams embraced an adaptive mindset, ready to make further adjustments based on the comparative insights gained. The iterative nature of the Scrum framework allowed for dynamic responses to emerging observations, ensuring continuous improvement in the performance of YOLO, AlexNet, VGG, and ResNet.
+
+\paragraph{Documentation of Comparative Results}
+Similar to the preceding weeks, a focus on clear documentation persisted. Teams meticulously recorded the outcomes of the comparative analysis, noting significant findings, notable patterns, and any areas for potential refinement. This documentation not only served as a repository of knowledge but also facilitated informed decision-making as we progressed.
+
+\subsection{Week 4: Presentation (12/11 - 18/11)}
+Entering the fourth week of our 5-week Scrum expedition, our focus shifted to getting ready for the project presentation scheduled on 14/11/2023. This crucial week was all about putting together our findings, polishing our insights, and making sure our presentation on the convergence of CNNs and AI models was engaging and impactful.
+
+\paragraph{Data Synthesis and Findings Clarification}
+The week began with teams bringing together the information collected during the implementation, parameter adjustment, and model comparison phases. Findings were simplified into clear and straightforward points, showcasing the main insights from our exploration of YOLO, AlexNet, VGG, and ResNet.
+
+\paragraph{Presentation Structure Planning}
+Teams collaboratively planned the structure of the upcoming presentation. This involved outlining key sections, deciding on the sequence of model presentations, and allocating time for an effective delivery. The Scrum framework's emphasis on iterative planning facilitated a dynamic approach to refining the presentation structure.
+
+\paragraph{Dry Runs and Feedback Sessions}
+To ensure a successful presentation, teams rehearsed their parts, getting feedback and making adjustments internally. These practice sessions played a crucial role in refining the story, ensuring everything made sense, and handling any questions that might come up during the real presentation.
+
+\paragraph{Reflection and Continuous Improvement}
+At the same time, the week gave us a chance to have thoughtful discussions. Teams looked back on the entire journey, thinking about the challenges we dealt with, what we learned, and where we can get better. The Scrum framework's meetings to review and learn from our experiences were crucial in building a culture of always learning and getting better.
+
+\paragraph{Finalizing the Report}
+The week's activities ended with teams completing the presentation report. They combined their polished insights, brought together their findings, and added reflective observations to create a detailed document. This report not only acted as a guide for the presentation but also served as a tangible record of our 5-week Scrum journey.
+
+\subsection{Week 5: Reflection and Report (19/11 - 25/11)}
+In the last week of our 5-week Scrum journey, we turned our attention to creating the final report that captured everything we discovered about the convergence of CNNs and AI models. This week was crucial for summarizing our overall insights, lessons learned, and highlighting how our understanding evolved over the course of the journey.
+
+\paragraph{Conclusion and Recommendations}
+The final report had a strong conclusion summarizing the main findings and insights from our 5-week exploration. In addition, teams offered practical recommendations for future projects and improvements, showcasing the flexible and forward-thinking approach of the Scrum framework.
+
+\paragraph{Peer Review and Feedback}
+To ensure the report's quality, teams engaged in peer reviews and sought feedback from fellow team members. This collaborative process allowed for additional refinement, ensuring that the final report was comprehensive, accurate, and effectively communicated the essence of our journey.
+
+\paragraph{Document Finalization}
+The week concluded with the teams finalizing the report, incorporating feedback, and making any last-minute adjustments. This step marked the culmination of our 5-week Scrum journey, with the final report serving as a testament to our collaborative efforts and the outcomes of our exploration.
+
+\section{Conclusion}
+
+Considering Real-World Applications and Scenarios:
+When assessing the performance of YOLO, ResNet, VGGNet, and AlexNet in image classification, it's essential to examine their suitability for real-world scenarios. Each model comes with distinct strengths and weaknesses, shaping their applicability across different use cases. Understanding these attributes is crucial for deploying these models effectively in practical applications.
+
+\subsection{YOLO (You Only Look Once)}
+Demonstrates notable efficiency and accuracy, particularly excelling in real-time object detection scenarios, prioritizing speed. It's important to note that YOLO operates as a pipeline, facilitating seamless and rapid processing in object detection tasks.
+
+\subsection{ResNet}
+Effectively addresses the vanishing gradient problem through deep residual learning, making it proficient in capturing intricate features, albeit demanding substantial computational resources.
+
+\subsection{VGGNet}
+Performs well in image classification tasks due to its straightforward design and consistent architecture, but may face challenges related to overfitting on large-scale datasets.
+
+\subsection{AlexNet}
+While an early deep learning architecture, AlexNet exhibits solid performance in image classification, though its design may be considered somewhat outdated compared to more recent models.
+
+\subsection{Conclusive Remarks on the Most Effective Model for the Given Task}
+In the context of image classification, considering the evaluated architectures, YOLO emerges as a strong performer. Its real-time object detection capabilities and high accuracy, coupled with its pipeline structure, position it as a favorable choice for scenarios where rapid and precise object identification is crucial.
+
+\subsection{Future Directions for Research}
+While YOLO stands out in image classification, there's room for ongoing research and improvement. Future endeavors could focus on optimizing the pipeline architecture for specific applications, enhancing adaptability to handle diverse object classes, and addressing identified limitations. Additionally, exploring ways to make YOLO more resource-efficient without compromising performance could broaden its deployment possibilities in resource-constrained environments.
+
+In conclusion, this study offers insights into the comparative performance of YOLO, ResNet, VGGNet, and AlexNet in image classification tasks. The findings contribute to understanding these models and inform decision-making when selecting a suitable model for practical applications. YOLO's success, particularly as a pipeline, positions it as a promising option for image classification in real-world scenarios, with potential for further refinement and optimization in future research endeavors.
+
+\section{Acknowledgement}
+
+We would like to express our deepest appreciation to all those who provided us the possibility to complete this report. A special gratitude we give to Dr. Le Trong Nhan, whose contribution in stimulating suggestions and encouragement, helped us to coordinate our project especially in writing this report.
+
 {\small
-        \bibliographystyle{ieee}
-        \bibliography{bibliography.bib}
+\bibliographystyle{ieee}
+\bibliography{bibliography.bib}
 }
 
 
