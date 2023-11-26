@@ -67,7 +67,7 @@ Bui Duc Xuan\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   In this project, we conducted a comprehensive comparative analysis of prominent machine learning models, namely Alexnet, VGG, Resnet, and YOLO, with a focus on their efficacy in image recognition. Leveraging a curated dataset representative of diverse real-world scenarios with CIFAR-10, our study delved into the nuances of each model's architecture, training process, and computational requirements. Through rigorous evaluation using metrics such as accuracy, precision, and recall, our results reveal nuanced performance distinctions. Notably, Resnet demonstrated superior accuracy, VGG excelled in feature extraction, YOLO showcased real-time efficiency, and Alexnet exhibited a stable performance. These findings provide valuable insights for practitioners and researchers seeking to optimize model selection for specific applications, shedding light on the trade-offs between accuracy, computational cost, and real-time processing capabilities. Project's detailed code are provided at {\url{https://github.com/nhientruong04/LIA-introCS-proj}}.
+        In this project, we conducted a comprehensive comparative analysis of prominent machine learning models, namely Alexnet, VGG, Resnet, and YOLO, with a focus on their efficacy in image recognition. Leveraging a curated dataset representative of diverse real-world scenarios with CIFAR-10, our study delved into the nuances of each model's architecture, training process, and computational requirements. Through rigorous evaluation using metrics such as accuracy, precision, and recall, our results reveal nuanced performance distinctions. Notably, Resnet demonstrated superior accuracy, VGG excelled in feature extraction, YOLO showcased real-time efficiency, and Alexnet exhibited a stable performance. These findings provide valuable insights for practitioners and researchers seeking to optimize model selection for specific applications, shedding light on the trade-offs between accuracy, computational cost, and real-time processing capabilities. Project's detailed code are provided at {\url{https://github.com/nhientruong04/LIA-introCS-proj}}.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -108,29 +108,22 @@ Deep learning methodologies have been widely applied in the detection and classi
 \begin{table}[h]
         \centering
         \label{tab:small_table}
-        \scalebox{0.8}{\begin{tabular}{|c|c|c|c|c|}
-                \hline
-                
-                Models      & Release Date & Number of layers & Params (M) & Flops(G)\footnote{} \\
-                \hline
-                AlexNet     & 2012         & 8                & 61         & 0.715               \\
-                VGGNet      & 2014         & 16 or 19         & 138-144    & 15.5-20             \\
-                ResNet-50   & 2015         & 50               & 25.56      & 4.12                \\
-                ResNet101   & 2015         & 101              & 44.55      & 7.85                \\
-                Yolov5x-cis & 2020         & 19               & 48.1       & 15.9                \\
-                Yolov8x-cls & 2023         & 53               & 57.4       & 154.8               \\
-                \hline
-        \end{tabular}}
+        \scalebox{0.7}{\begin{tabular}{|c|c|c|c|c|}
+                        \hline
+
+                        Models      & Release Date & Number of layers & Params (M) & Flops(G)\footnote{} \\
+                        \hline
+                        AlexNet     & 2012         & 8                & 61         & 0.715               \\
+                        VGGNet      & 2014         & 16 or 19         & 138-144    & 15.5-20             \\
+                        ResNet-50   & 2015         & 50               & 25.56      & 4.12                \\
+                        ResNet101   & 2015         & 101              & 44.55      & 7.85                \\
+                        Yolov5x-cis & 2020         & 19               & 48.1       & 15.9                \\
+                        Yolov8x-cls & 2023         & 53               & 57.4       & 154.8               \\
+                        \hline
+                \end{tabular}}
         \caption{Data Comparision}
 \end{table}
 In addition to the aspects mentioned above, models that were created afterwards fixed the weaknesses of their predecessors. For instance,  AlexNet lacks explicit regularization techniques, making it prone to overfitting. VGGNet incorporates dropout, a regularization technique that randomly drops out a certain percentage of neurons during training. This forces the model to learn more robust and generalizable features, reducing overfitting and improving generalization performance. Although AlexNet implies dropout as well but only in the first two fully connected layers, VGGNet has it in both convolutional and connected layers. However, these two plain networks still confront the degradation problem when it comes to extending their architectures. Hence, Resnet was made to solve the vanishing gradients problem as the layers went deeper and deeper. Yolo is more like a pipeline that includes CNN models as backbone and others applies advanced techniques into training. Leading to a significant increase in FLOPs in terms of the numbers of params.
-
-
-
-
-
-
-
 
 \footnotetext{GigaFlop (or Gflop) is a billion FLOPS. Here we take the data of the models that train with ImageNet dataset}
 
@@ -244,10 +237,10 @@ In conclusion, this study offers insights into the comparative performance of YO
 
 We would like to express our deepest appreciation to all those who provided us the possibility to complete this report. A special gratitude we give to Dr. Le Trong Nhan, whose contribution in stimulating suggestions and encouragement, helped us to coordinate our project especially in writing this report.
 
-{\small
-\bibliographystyle{ieee}
-\bibliography{bibliography.bib}
-}
+        {\small
+                \bibliographystyle{ieee}
+                \bibliography{bibliography.bib}
+        }
 
 
 \end{document}
