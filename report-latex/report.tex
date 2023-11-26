@@ -71,19 +71,55 @@ Bui Duc Xuan\\
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction}
+\subsection{AlexNet}
+In 2012, the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) \footnote{\url{https://image-net.org/challengehttps://image-net.org/challenges/LSVRC/index.phps/LSVRC/index.php}} dataset was introduced, which required a model capable of processing a large dataset like ImageNet. The introduction of Alexnet by Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton marked a significant milestone in the field of computer vision. Alexnet showed the feasibility of deep learning so well that it got a top-five error of fifteen point three percent on data that has a thousand categories in the ILSVRC 2012\cite{krizhevsky_2012_imagenet}. Its original paper is the theoretical basis for the report below.
+\subsubsection{Overall architecture}
 
-Human cognitive processes, mirroring the intricacies of an advanced supercomputer, rely on the nuanced interaction of neurons to perceive diverse stimuli such as digits, numbers, words, and images. This cognitive evolution spans from its early stages to the present era, with a notable milestone being the introduction of not only Generative AI but also other groundbreaking advancements in artificial intelligence.
 
-In an era defined by the rapid advancement of artificial intelligence, the field of machine learning and deep learning stands as a beacon of innovation, transforming the way computers perceive and interact with their surroundings. This project delves into the intricate world of these cutting-edge technologies, specifically focusing on computer vision—a domain crucial for tasks ranging from image recognition to object detection. With the four chosen prominent models - Alexnet, VGG\footnote{\url{https://arxiv.org/abs/1409.1556}}, Resnet\cite{simonyan2015deep}, and YOLO, we are seeking to unravel the complexities and reveal the engine behind these widely recognized models.
+\begin{flushleft}
+    \begin{figure}[h!]
+    \begin{center}
+        \includegraphics[scale=0.15]{imagenet-6}
+        \caption{An illustration of the architecture of}{AlexNet\footnote{The input size is mentioned at most of the places as 224*224*3 but due to some special reason which happens it works out to be 227*227*3.}}{, clearly demonstrating the division of responsibility between the two GPUs.}
+        \label{fig:imagenet-6}
+    \end{center}
+    \end{figure}
+\end{flushleft}
+Alexnet is a deep convolutional neural network that has 8 layers with learnable parameters. It consists of 5 convolutional layers and 3 fully connected layers. The first two Convolutional layers are followed by the pooling layers which are used to perform max pooling. The third, fourth, and fifth convolutional layers are connected directly. The Alexnet architecture takes images of size 227*227 as input and has three layers based on the RGB. After going through each layer, the number of filters becomes the kernels in the output feature map. The structure involves an increase in the number of filters as we go deeper into the architecture. The filter size is also reduced, which means the initial filter was larger. The first layers can recognize simple features, like edges, shapes, and textures. As the network gets deeper, it produces more abstract representations, eventually identifying concepts from mammals to dogs and even Siberian huskies \cite{shipra_2021_alexnet}. In the end, fully connected layers are used to produce the 1000-label classification needed for ImageNet. The output of the last fully-connected layer is fed to a 1000-way softmax which produces a distribution over the 1000 class labels\cite{krizhevsky_2012_imagenet}.
 
-The comprehensive AI taxonomy proposed by IBM outlines seven distinct types, with Generative AI representing the initial stride in the AI continuum. Within this evolving landscape, Convolutional Neural Networks (CNNs) \footnote{\url{https://arxiv.org/pdf/1511.08458.pdf}} have garnered particular attention and proven to be a pivotal model. CNNs stand out for their remarkable application in various domains, excelling in tasks such as image classification, object detection, and pattern recognition.
 
-In the realm of machine learning (ML), CNNs have risen to prominence, offering a competitive edge over traditional regression and statistical models, particularly in tasks requiring image analysis. Their efficacy is underscored by their ability to automatically learn hierarchical features from data, making them well-suited for complex visual tasks.
 
-This paradigm shift exemplifies the dynamic nature of AI, where models like CNNs, designed to emulate the human visual system, have become indispensable tools in addressing intricate challenges across diverse disciplines.
+\subsubsection{ReLu activation function}
 
-The rest of this paper is organized as follows:
+\begin{flushleft}
+    
+\begin{figure}[h!]
+    \begin{center}
+        \includegraphics[scale=0.35]{relu_ex}
+        \caption{ReLU activation function in the}{positive interval is always 1.}
+        \label{fig:relu_ex}
+    \end{center}
+\end{figure}
+\end{flushleft}
+The AlexNet architecture introduced the use of ReLU (Rectified Linear Unit) Nonlinearity, which is a more efficient activation function than the previously used Tanh or sigmoid functions. It can be represented as: f(x) = max(0, x), where x is the input value. The paper shows that using ReLUs, AlexNet could achieve a 25\% training error rate six times faster than an equivalent network using tanh. This was tested on the CIFAR-10 dataset\cite{krizhevsky_2012_imagenet}. The function is applied after all the convolution and fully connected layers.
+
+\subsubsection{ Multi(2)-GPU learning}
+Multi-GPU learning is a method that allows for the parallelization of the training process across multiple GPUs. The authors utilized two GPUs to increase the network size, as the GPU at that time had a memory limit of 3GB. The network is split into two such as Figure \ref {fig:imagenet-6}, which communicated in specific layers to ensure they were not training two separate models. Therefore, the two-GPU net takes slightly less time to train than the one-GPU net.
+
+\subsubsection{Dropout}
+Dropout is a regularization technique that helps to prevent overfitting by randomly setting some neurons to zero during the training process. In AlexNet, dropout is applied to the first two fully-connected layers with a dropout rate of 0,5. This means that half of the neurons in these layers are ignored during each iteration of training. Dropout helps to improve the generalization performance of AlexNet on large-scale image recognition tasks.
+
+\begin{flushleft}
+    
+\begin{figure}[h!]
+    \begin{center}
+        \includegraphics[scale=0.3]{dropout}
+        \caption{Dropout Neural Net Model\cite{baeldung_2020_how}.}
+        \label{fig:dropout}
+    \end{center}
+\end{figure}
+\end{flushleft}
+
 
 {\small
 \bibliographystyle{ieee}
