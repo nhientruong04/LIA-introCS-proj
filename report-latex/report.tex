@@ -9,6 +9,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{hyperref}
+\usepackage{caption}
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
@@ -70,46 +71,75 @@ Bui Duc Xuan\\
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Models}
+\section{Experiments}
+\subsection{Dataset}
+This study leverages the CIFAR-10 dataset for training and evaluation. CIFAR-10 consists of 60,000 $32\times32$ color images in 10 different classes, with 6,000 images per class. This dataset is widely used for image classification tasks, providing a diverse set of small-sized images for training robust models.
 
-\subsection{ResNet}
-ResNet is an innovative result realized by a team of Microsoft researchers during participating the ILSVRC 2015, with the ultimate grand achievement is the first place of the competition by using multiple ensembles rooted from ResNet. Its original paper \cite{ResNet}, has gained substantial citations and is considered one of the most important contributions in the field of Computer Vision.
+\subsection{Settings}
+Typically, conducting a thorough experiment would be redundant since training and testing with each combination of hyperparameters would cost us a lot of time and resources. Therefore, we conducted an experiment which required a fixed setting and guaranteed homogeneity for all targeted models. The set of hyperparameters are configured in Tab \ref{tab:settings}.
 
-\subsubsection{Addressed problems}
+\begin{table}
+        \begin{center}
+            \begin{tabular}{c|c}
+                \hline
+                \textbf{Settings} & \textbf{Value} \\
+                \hline
+                        Learning rate & 0.01\\
+                        Epoch & 20 \\
+                        Batch size & 64 - 128 \\
+                        Input size & (224 x 224) \\
+                        Augmentation & Random flip, RGB normalization \\
+                        Dataset splits & Train-val-test (0.8-0.1-0.1) \\
+                \hline
+            \end{tabular}
+            \caption{Settings for training and final comparison.}
+            \label{tab:settings}
+        \end{center}
+\end{table}
 
-\paragraph{Main problems} With the rapid development of convolutional neural networks after the success of VGGNet \cite{VGG}, various networks have been created based on the idea of VGG, “the deeper, the better”. Despite multiple slight differences in terms of layers or activation functions in those models, the same technique aiming at creating a model that was “deep enough” was utilized popularly at that time. However, a new problem was raised questioning the “deepness” of any CNN models: “How deep can a model be extended?”. The problem is called the degradation phenomenon, when a deeper version of a CNN model performs worse than its shallower counterparts. This experiment was shown in the paper of Resnet, when the authors trained 2 plain models and compared their performance, as shown in \ref{fig:Resnet_intro}. It is clear that the 20-layer model performed better than its deeper counterpart in both training and testing set. This graph also showed that the degradation phenomenon was not correlated with the overfitting problem \cite{overfitting_overview}, as the training error of the 56-layer model was higher than the 20-layer one and no divergence between the training error and the testing error was found. The authors argued that this phenomenon is caused when an already sufficiently deep model gets deeper, then its accuracy and training error would saturate earlier instead of achieving its efficient local extremum.
+It is not quite common to set the learning rate at $1e-2$ as it is considered unnecessary large, a more common learning rate is $1e-3$. However, for the sake of convergence speed of the chosen models, we chose this rate and adopted a “Reduce Learning Rate on Plateau” scheduler \cite{reduceonplateau} to have better results. Regarding the optimizer algorithm, Stochastic Gradient Descent \cite{SGD} was used because of its popularity and widely approved efficiency, with a weight decay of $0.01$ and $0.9$ momentum. Both training and testing procedures are conducted on a T4 GPU (with 15 GB VRam) provided by Google Colab and a local NVIDIA RTX 2060 (with 12 GB VRam).
 
+\subsection{Result}
+After 20 epochs of training, important metrics such as precision, recall and accuracy were logged\footnote[3]{YOLO metrics were not included. Please visit its official implemented pipeline at \url{https://github.com/ultralytics/ultralytics} for information of its metrics and training settings.}. Recorded values can be viewed in Fig \ref{fig:precision} and Fig \ref{fig:recall}.
 \begin{figure}
         \begin{center}
-        \includegraphics[width=0.45\textwidth]{figures/resnet_intro_compare.png}
-        \caption{Training error (left) and test error (right) on CIFAR-10
-        with 20-layer and 56-layer “plain” networks. The image was taken from the ResNet paper \cite{ResNet}.}
-        \label{fig:Resnet_intro}
-\end{center}
+            \includegraphics[width=0.45\textwidth]{figures/precision.png}
+            \caption{Precision of all models on validation split. ResNet-50 and ResNet-101 both achieved the highest score.}
+            \label{fig:precision}
+        \end{center}
 \end{figure}
-
-\paragraph{The pitfall of vanishing gradients} The degradation phenomenon mentioned above is currently still a controversial topic, when many sources \cite{visoai, Datagen_2023,GeeksforGeeks_2023} agree that this phenomenon is rooted from the vanishing gradients problem \cite{exp_vanishing_grad_1,exp_vanishing_grad_2}. This is indeed a valid reason since the gradients would gradually decay through each individual layer in the backpropagation phase. However, the authors of ResNet argued that the vanishing gradients problem has little effect on the model causing the degradation phenomenon. “We argue that this optimization difficulty is unlikely to be caused by vanishing gradients. These plain networks are trained with BN, which ensures forward propagated signals to have non-zero variances. We also verify that the backward propagated gradients exhibit healthy norms with BN. So neither forward nor backward signals vanish.”, stated by Kaiming He et al. in their paper \cite{ResNet}. Based on this argument, they argued that the degradation phenomenon was indeed a natural dilemma arising from the action of deepening any CNN models. This argument directly opposes the effect of the vanishing gradients problem on deep models, which would require that more proof and experiments must be conducted to approve any sides. However, despite the different reasoning of the degradation phenomenon, one of the same goals of any models created till now is avoiding this problem.  
-
-\subsubsection{Architecture}
-
-\paragraph{Skip connections} Mathematically, defining a residual block with a skip connection as:
-\[y=\uppercase{\gamma}(x) + x\]
-With \(\uppercase{\gamma}(x)\) represents a generalized convolutional mapping with an activation function. The equation strictly illustrates combining input \(x\) with \(\uppercase{\gamma}(x)\) through addition expression. A skip connection is a pathway for any input feature map to flow to the output of the next layer. The intuition behind this technique resembles the process of a person reviewing a picture one more time that has not seen for a long time. Adding the input to the output feature map is believed to make the model “remember” its input, since any processing or calculation that input went through may make the output completely unrelated. Moreover, many sources of information about ResNet besides the authors agree that these skip connections will alleviate the vanishing gradients problem, hence could help the model to have a greater amount of layers.  
-
 \begin{figure}
         \begin{center}
-        \includegraphics[width=0.4\textwidth]{figures/resnet_architecture.png}
-        \caption{Architecture of ResNet compared to plain models. The image was taken from the ResNet paper \cite{ResNet}.}
-        \label{fig:Resnet_architecture}
-\end{center}
+            \includegraphics[width=0.45\textwidth]{figures/recall.png}
+            \caption{Recall of all models on validation split. ResNet-50 and ResNet-101 both achieved the highest score.}
+            \label{fig:recall}
+        \end{center}
 \end{figure}
 
+The results of all tested models on the valuation set can be logically reasoned. These metrics indicate that a newer architecture would result in a better performance, since each model was proposed based on the fact that it has achieved or even surpassed the SOTA result at that time. AlexNet is the oldest model that has been proposed; hence, it performed generally worse compared to other models despite its unarguably good performance when compared to older Machine Learning techniques that mainly rely on feature extraction methods with mathematics. However, it is clear that these graphs reflect a quite opposite trend that we expected, which is the instability and fluctuation of the 2 VGG variants. At some points, including the $20^{th}$ epoch, both metrics of these 2 versions are lower than those of AlexNet. This strange phenomenon contradicts the common sense that we have introduced - the more parameters a model has, the more complex it is, the better it performs. Compared to AlexNet, VGGNet is far more complicated with a double amount of parameters that AlexNet has; which should imply that its variants would have better results. Regarding this peculiar problem, we propose a hypothesis for reasoning. We believe that each model has its own convergence timeline; which means that although both variants in this study perform worse than AlexNet, they should achieve better results when they are trained for longer time. Generally, 20 epochs are widely considered insufficient in order to evaluate the best result that a model can achieve; hence, training for sufficiently larger amount of epochs would result in a more logical output. 
 
-\paragraph{The general architecture} Since skip connections can be used as an identity mapping in any CNN models, the proposed ResNet would have many layers, from 34 to 151 layers preferably. The skip connections are utilized in each layer, as shown in \ref{fig:Resnet_architecture}. The proposed ResNet model resembles the VGGNet in terms of using small kernel size for convolutional layers and stacking a sufficient amount of these layers. The skip connections can be directly used when the input and output are of the same dimensions (solid line shortcuts in \ref{fig:Resnet_architecture}). When the dimensions increase (dotted line shortcuts in \ref{fig:Resnet_architecture}), there are 2 options: (A) The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions. This option introduces no extra parameter; (B) The projection shortcut is used to match dimensions (done by 1×1 convolutions). For both options, when the shortcuts go across feature maps of two sizes, they are performed with a stride of 2.
+Besides results logged after each epoch, an evaluation on the test set with $10,000$ images are also provided below.
 
-\subsubsection{Applications}
+\begin{table}[h]
+        \centering
+        \label{tab:small_table}
+        \scalebox{1}{\begin{tabular}{c|c|c|c}
+        \hline
+        
+        \textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} \\
+        \hline
+                AlexNet & 0.755 & 0.7726 & 0.755 \\
+                VGG-16 & 0.7781 & 0.7773 & 0.7781 \\
+                ResNet-34 & 0.8431 & 0.8424 & 0.8431 \\
+                ResNet-50 & 0.8653 & 0.8657 & 0.8653 \\
+                ResNet101 & \underline{0.8848} & \underline{0.8851} & \underline{0.8848} \\
+                Yolov8n-cls & \textbf{0.8896} & \textbf{0.8892} & \textbf{0.8896} \\
+        \hline
+        \end{tabular}}
+        \caption{Result on test set. \textbf{Bold} values are largest, \underline{underline} values are second largest}
+\end{table}
 
-The invention of ResNet sparks the utilization of that same structure, especially the skip connections or residual blocks, in many CNN models not only in the Computer Vision field but also a greater, older field which is Natural Language Processing. Some impactful architectures developed based on ResNet are ResNeXt \cite{ResNeXt} and DenseNet \cite{DenseNet}, where residual blocks and skip connections are implemented differently to tackle the weaknesses of ResNet. In addition, those skip connections (or preferably called identity mapping), are utilized in Transformer \cite{Transformer}, which is an evolutionary architecture that outperformed any forms of CNN in NLP. The same architecture was also widely used to create different types of Transformer models in the Computer Vision field, such as ViT \cite{ViT} or Swin \cite{Swin}. The skip connections used in Transformer sequentially made the Attention blocks in this model a new type of residual blocks.
+YOLOv8 nano with classification version achieved the best result, which is slightly better than the ResNet-101. YOLO is a complicated pipeline with different modules and parts that are regressed to produce the final result; hence its dominant result is understandable. In fact, considering only plain models would make ResNet stand out the most with its high performance in all of its 3 versions. This is also the reason why ResNet is widely utilized as a firm backbone for various pipelines and recent architectures.
 
 {\small
         \bibliographystyle{ieee}
