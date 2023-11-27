@@ -121,7 +121,7 @@ In 2012, the ImageNet Large Scale Visual Recognition Challenge (ILSVRC)\footnote
 \end{flushleft}
 % \footnotetext{The input size is mentioned at most of the places as 224*224*3 but due to some special reason which happens it works out to be 227*227*3.}
 
-Alexnet is a deep convolutional neural network that has 8 layers with learnable parameters. It consists of 5 convolutional layers and 3 fully connected layers. The first two Convolutional layers are followed by the pooling layers which are used to perform max pooling. The third, fourth, and fifth convolutional layers are connected directly. The Alexnet architecture takes images of size 227*227 as input and has three layers based on the RGB\@. After going through each layer, the number of filters becomes the kernels in the output feature map. The structure involves an increase in the number of filters as we go deeper into the architecture. The filter size is also reduced, which means the initial filter was larger. The first layers can recognize simple features, like edges, shapes, and textures. As the network gets deeper, it produces more abstract representations, eventually identifying concepts from mammals to dogs and even Siberian huskies\cite{shipra_2021_alexnet}. In the end, fully connected layers are used to produce the 1000-label classification needed for ImageNet. The output of the last fully-connected layer is fed to a 1000-way softmax which produces a distribution over the 1000 class labels\cite{Alexnet}.
+Alexnet is a deep convolutional neural network that has 8 layers with learnable parameters. It consists of 5 convolutional layers and 3 fully connected layers. The first two Convolutional layers are followed by the pooling layers which are used to perform max pooling. The third, fourth, and fifth convolutional layers are connected directly. The Alexnet architecture takes images of size $227\times227$ as input and has three layers based on the RGB\@. After going through each layer, the number of filters becomes the kernels in the output feature map. The structure involves an increase in the number of filters as we go deeper into the architecture. The filter size is also reduced, which means the initial filter was larger. The first layers can recognize simple features, like edges, shapes, and textures. As the network gets deeper, it produces more abstract representations, eventually identifying concepts from mammals to dogs and even Siberian huskies\cite{shipra_2021_alexnet}. In the end, fully connected layers are used to produce the 1000-label classification needed for ImageNet. The output of the last fully-connected layer is fed to a 1000-way softmax which produces a distribution over the 1000 class labels\cite{Alexnet}.
 
 \subsubsection{ReLu activation function}
 
@@ -136,11 +136,11 @@ Alexnet is a deep convolutional neural network that has 8 layers with learnable 
 \end{flushleft}
 The AlexNet architecture introduced the use of ReLU (Rectified Linear Unit) Nonlinearity, which is a more efficient activation function than the previously used Tanh or sigmoid functions. It can be represented as: $f(x)=\max(0, x)$, where x is the input value. The paper shows that using ReLUs, AlexNet could achieve a 25\% training error rate six times faster than an equivalent network using $\tanh$. This was tested on the CIFAR-10 dataset\cite{Alexnet}. The function is applied after all the convolution and fully connected layers.
 
-\subsubsection{ Multi-GPU learning}
+\subsubsection{Multi-GPU learning}
 Multi-GPU learning is a method that allows for the parallelization of the training process across multiple GPUs. The authors utilized two GPUs to increase the network size, as the GPU at that time had a memory limit of 3GB\@. The network is split into two such as Figure\ref{fig:imagenet-6}, which communicated in specific layers to ensure they were not training two separate models. Therefore, the two-GPU net takes slightly less time to train than the one-GPU net.
 
 \subsubsection{Dropout}
-Dropout is a regularization technique that helps to prevent overfitting by randomly setting some neurons to zero during the training process. In AlexNet, dropout is applied to the first two fully-connected layers with a dropout rate of 0,5. This means that half of the neurons in these layers are ignored during each iteration of training. Dropout helps to improve the generalization performance of AlexNet on large-scale image recognition tasks.
+Dropout is a regularization technique that helps to prevent overfitting by randomly setting some neurons to zero during the training process. In AlexNet, dropout is applied to the first two fully-connected layers with a dropout rate of 0.5. This means that half of the neurons in these layers are ignored during each iteration of training. Dropout helps to improve the generalization performance of AlexNet on large-scale image recognition tasks.
 
 \begin{flushleft}
 
@@ -155,7 +155,7 @@ Dropout is a regularization technique that helps to prevent overfitting by rando
 \subsection{VGGNet}
 \subsubsection{The motivation behind the VGGNet Model}
 The VGGNet model, officially known as the OxfordNet, was introduced in the paper titled
-“ Very Deep Convolutional Networks for Large-Scale Image Recognition”, presented at the
+“Very Deep Convolutional Networks for Large-Scale Image Recognition”, presented at the
 International Conference on Learning Representations (ICLR) in 2015. The VGGNet achieved
 notable success in the ImageNet Large Scale Visual  Recognition Challenge (ILSVRC) in 2014,
 showcasing the model’s mobility to excel in large-scale image classification tasks. In particular,
@@ -278,7 +278,7 @@ Months after YOLOv4 appeared, YOLOv5 was released by Glenn Jocher at Ultralytics
 \begin{table}[h]
     \centering
     \label{tab:small_table}
-    \scalebox{0.7}{\begin{tabular}{|c|c|c|c|c|}
+    \scalebox{0.7}{\begin{tabular}{c|c c c c}
             \hline
 
             Models      & Release Date & Number of layers & Params (M) & Flops(G)\footnote{} \\
