@@ -1,11 +1,15 @@
-\documentclass[10pt,twocolumn,letterpaper]{article}
 
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{array}
 \usepackage{statcourse}
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{caption}
 
 % Include other packages here, before hyperref.
 
@@ -15,8 +19,7 @@
 \usepackage[breaklinks=true,bookmarks=false]{hyperref}
 
 
-\statcoursefinalcopy
-
+\statcoursefinalcopy%
 
 \setcounter{page}{1}
 \begin{document}
@@ -67,7 +70,7 @@ Bui Duc Xuan\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   In this project, we conducted a comprehensive comparative analysis of prominent machine learning models, namely Alexnet, VGG, Resnet, and YOLO, with a focus on their efficacy in image recognition. Leveraging a curated dataset representative of diverse real-world scenarios with CIFAR-10, our study delved into the nuances of each model's architecture, training process, and computational requirements. Through rigorous evaluation using metrics such as accuracy, precision, and recall, our results reveal nuanced performance distinctions. Notably, Resnet demonstrated superior accuracy, VGG excelled in feature extraction, YOLO showcased real-time efficiency, and Alexnet exhibited a stable performance. These findings provide valuable insights for practitioners and researchers seeking to optimize model selection for specific applications, shedding light on the trade-offs between accuracy, computational cost, and real-time processing capabilities. Project's detailed code are provided at {\url{https://github.com/nhientruong04/LIA-introCS-proj}}.
+    In this project, we conducted a comprehensive comparative analysis of prominent machine learning models, namely Alexnet, VGG, Resnet, and YOLO, with a focus on their efficacy in image recognition. Leveraging a curated dataset representative of diverse real-world scenarios with CIFAR-10, our study delved into the nuances of each model's architecture, training process, and computational requirements. Through rigorous evaluation using metrics such as accuracy, precision, and recall, our results reveal nuanced performance distinctions. Notably, Resnet demonstrated superior accuracy, VGG excelled in feature extraction, YOLO showcased real-time efficiency, and Alexnet exhibited a stable performance. These findings provide valuable insights for practitioners and researchers seeking to optimize model selection for specific applications, shedding light on the trade-offs between accuracy, computational cost, and real-time processing capabilities. Project's detailed code are provided at {\url{https://github.com/nhientruong04/LIA-introCS-proj}}.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -220,51 +223,52 @@ The invention of ResNet sparks the utilization of that same structure, especiall
 \subsection{YOLO}
 
 \subsubsection{Initial YOLO model (YOLOv1)}
-\paragraph{Initial problem} Prior to the initial model of YOLO, object detection was based on repurposing classifiers. According to the author of the first model in the YOLO family, they wanted a new approach to the task, framing object detection as a regression problem with “spatially separated bounding boxes and associated class probabilities” \cite{redmon2016look}
+\paragraph{Initial problem} Prior to the initial model of YOLO, object detection was based on repurposing classifiers. According to the author of the first model in the YOLO family, they wanted a new approach to the task, framing object detection as a regression problem with “spatially separated bounding boxes and associated class probabilities” \cite{redmon2016look}.
 
-\paragraph{Workflow} The model divides the input image into grid cells, each responsible for predicting several bounding boxes and their corresponding confidence score [1p]. The model then eliminates some bounding boxes around an object with a confidence score lower than a predefined threshold. If multiple bounding boxes are still left, then the model applies non-max suppression to select the one with the highest confidence score \cite{terven2023comprehensive}\cite{datacampYOLOObject}. 
+\paragraph{Workflow} The model divides the input image into grid cells, each responsible for predicting several bounding boxes and their corresponding confidence score [1p]. The model then eliminates some bounding boxes around an object with a confidence score lower than a predefined threshold. If multiple bounding boxes are still left, then the model applies non-max suppression to select the one with the highest confidence score \cite{terven2023comprehensive, datacampYOLOObject}.
 
-\paragraph{Architecture} The initial YOLO model consists of 24 convolutional layers, as in the table below, with leaky rectified linear unit activation (Leaky ReLU) functions except for the final layer using the linear activation function, followed by 2 fully-connected layers at the end. The output is the 7 x 7 x 30 tensor of prediction \cite{redmon2016look}\cite{terven2023comprehensive}. 
+\paragraph{Architecture} The initial YOLO model consists of 24 convolutional layers, as in the table below, with leaky rectified linear unit activation (Leaky ReLU) functions except for the final layer using the linear activation function, followed by 2 fully-connected layers at the end. The output is the $7\times7\times30$ tensor of prediction \cite{redmon2016look, terven2023comprehensive}.
 
 \begin{figure*}
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{assets/Capture1.PNG}
-    \caption{Architecture of YOLOv1.}
-    \label{fig:picture1}
-\end{center}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/YOLO1.PNG}
+        \caption{Architecture of YOLOv1.}
+        \label{fig:picture1}
+    \end{center}
 \end{figure*}
 
-\paragraph{Innovation} Their framing of the problem resulted in a single neural network as a complete pipeline performing object detection. This allows direct end-to-end optimization of the performance of the model. As a result, such a pipeline “straight from image pixels to bounding box coordinates and class probabilities” makes the model simple and, thus, faster than multi-part approaches such as R-CNN. Furthermore, this structure allows YOLO to observe the entire image, including the appearance of the classes as well as contextual information, to learn to generalize object representation and to perform with better accuracy \cite{redmon2016look}. 
+\paragraph{Innovation} Their framing of the problem resulted in a single neural network as a complete pipeline performing object detection. This allows direct end-to-end optimization of the performance of the model. As a result, such a pipeline “straight from image pixels to bounding box coordinates and class probabilities” makes the model simple and, thus, faster than multi-part approaches such as R-CNN. Furthermore, this structure allows YOLO to observe the entire image, including the appearance of the classes as well as contextual information, to learn to generalize object representation and to perform with better accuracy \cite{redmon2016look}.
 
-\paragraph{Limitations} Only a maximum of two boxes and one class can be predicted by a grid cell, meaning that the model has “strong spatial constraints on bounding box predictions”. This significantly reduces the ability of the model to predict small objects that appear in groups (such as a flock of birds), because the number of nearby objects that the model can predict is limited. Beyond that, the model “uses relatively coarse features for predicting bounding boxes” since those features have been downsampled  through its layers, thus making the model struggle in the generalization of objects in unfamiliar “aspect ratios or configurations”. Furthermore, the loss function treats the error in the small bounding box the same as in the large bounding box, though they differ in terms of the effect on the confidence score. This results in incorrect localization by the model \cite{redmon2016look}. 
+\paragraph{Limitations} Only a maximum of two boxes and one class can be predicted by a grid cell, meaning that the model has “strong spatial constraints on bounding box predictions”. This significantly reduces the ability of the model to predict small objects that appear in groups (such as a flock of birds), because the number of nearby objects that the model can predict is limited. Beyond that, the model “uses relatively coarse features for predicting bounding boxes” since those features have been downsampled  through its layers, thus making the model struggle in the generalization of objects in unfamiliar “aspect ratios or configurations”. Furthermore, the loss function treats the error in the small bounding box the same as in the large bounding box, though they differ in terms of the effect on the confidence score. This results in incorrect localization by the model \cite{redmon2016look}.
 
-\paragraph{Legacy} Since the appearance of the initial model of YOLO (also known as YOLOv1), there have been many similar models taking the inspiration of YOLOv1 to improve its performance, eventually creating the family of YOLO models. YOLOv5 and YOLOv8, two variants of version 5 and version 8 of YOLO, are not exceptions. They are variants of the YOLO family, both developed by Glenn Jocher at Ultralytics \cite{githubGlennjocherOverview}\cite{ultralyticsHome}, both share the general architecture, inspired by YOLOv3, of three parts: the backbone, the head, and the neck. The backbone extracts the features and passes them to the neck, the neck combines those features into maps and passes them to the head, and the head performs its prediction job. They are also capable of different tasks than detection, such as classification and segmentation \cite{terven2023comprehensive}\cite{ultralyticsHome}.
+\paragraph{Legacy} Since the appearance of the initial model of YOLO (also known as YOLOv1), there have been many similar models taking the inspiration of YOLOv1 to improve its performance, eventually creating the family of YOLO models. YOLOv5 and YOLOv8, two variants of version 5 and version 8 of YOLO, are not exceptions. They are variants of the YOLO family, both developed by Glenn Jocher at Ultralytics \cite{githubGlennjocherOverview, ultralyticsHome}, both share the general architecture, inspired by YOLOv3, of three parts: the backbone, the head, and the neck. The backbone extracts the features and passes them to the neck, the neck combines those features into maps and passes them to the head, and the head performs its prediction job. They are also capable of different tasks than detection, such as classification and segmentation \cite{terven2023comprehensive, ultralyticsHome}.
 
 \subsubsection{YOLOv5}
 
-Months after YOLOv4 appeared, YOLOv5 was released by Glenn Jocher at Ultralytics \cite{terven2023comprehensive}\cite{githubGlennjocherOverview}\cite{ultralyticsHome}. It is similar to YOLOv4 but developed in PyTorch rather than Darknet (as both took inspiration from major innovations in YOLOv3) \cite{terven2023comprehensive}. 
+Months after YOLOv4 appeared, YOLOv5 was released by Glenn Jocher at Ultralytics \cite{terven2023comprehensive, githubGlennjocherOverview, ultralyticsHome}. It is similar to YOLOv4 but developed in PyTorch rather than Darknet (as both took inspiration from major innovations in YOLOv3) \cite{terven2023comprehensive}.
 
-\paragraph{Changes compared to YOLOv1} The biggest change is the architecture. YOLOv5 uses the DarkNet53 backbone developed in YOLOv3, which has 53 convolution layers \cite{redmon2018yolov3}. The backbone consists of convolution modules (which is a convolution layer followed by Batch Normalization (BN) and SiLU activation) with CSP layers (which is the stacking of multiple convolution modules) and an SPPF layer at the end. The neck uses the CSP-PAN structure while the head uses that of YOLOv3 \cite{terven2023comprehensive}. The training strategy changes according to that of YOLOv4 \cite{bochkovskiy2020yolov4}. Version 5 of the YOLO family exercises multiple data augmentation techniques such as Mosaic \cite{bochkovskiy2020yolov4}, MixUp, HSV, etc. \cite{terven2023comprehensive}\cite{ultralyticsHome}, as well as hyperparameter evolution to automatically tune parameters for optimal performance \cite{ultralyticsHome}. The approach to prediction also changes. YOLOv5 adapts the anchor-box strategy from its predecessor of v3 \cite{terven2023comprehensive}\cite{redmon2018yolov3}, combined with its algorithm AutoAnchor to adjust the ill-fitted anchor-box \cite{terven2023comprehensive}\cite{ultralyticsHome}. 
+\paragraph{Changes compared to YOLOv1} The biggest change is the architecture. YOLOv5 uses the DarkNet53 backbone developed in YOLOv3, which has 53 convolution layers \cite{redmon2018yolov3}. The backbone consists of convolution modules (which is a convolution layer followed by Batch Normalization (BN) and SiLU activation) with CSP layers (which is the stacking of multiple convolution modules) and an SPPF layer at the end. The neck uses the CSP-PAN structure while the head uses that of YOLOv3 \cite{terven2023comprehensive}. The training strategy changes according to that of YOLOv4 \cite{bochkovskiy2020yolov4}. Version 5 of the YOLO family exercises multiple data augmentation techniques such as Mosaic \cite{bochkovskiy2020yolov4}, MixUp, HSV, etc. \cite{terven2023comprehensive, ultralyticsHome}, as well as hyperparameter evolution to automatically tune parameters for optimal performance \cite{ultralyticsHome}. The approach to prediction also changes. YOLOv5 adapts the anchor-box strategy from its predecessor of v3 \cite{terven2023comprehensive, redmon2018yolov3}, combined with its algorithm AutoAnchor to adjust the ill-fitted anchor-box \cite{terven2023comprehensive, ultralyticsHome}.
 
 \begin{figure*}
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{assets/Capture2.png}
-    \caption{Architecture of YOLOv5.}
-    \label{fig:picture2}
-\end{center}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/YOLO2.png}
+        \caption{Architecture of YOLOv5.}
+        \label{fig:picture2}
+    \end{center}
 \end{figure*}
 
-\subsubsection{YOLOv8} 
-\paragraph{Similarities compared to YOLOv5} In January 2023, YOLOv8 was released as a directly improved version of YOLOv5 \cite{terven2023comprehensive}\cite{ultralyticsHome}. It uses a similar architecture to YOLOv5 except for the major change in the head.
+\subsubsection{YOLOv8}
+
+\paragraph{Similarities compared to YOLOv5} In January 2023, YOLOv8 was released as a directly improved version of YOLOv5 \cite{terven2023comprehensive, ultralyticsHome}. It uses a similar architecture to YOLOv5 except for the major change in the head.
 
 \paragraph{Changes compared to YOLOv5} There is one major change in the architecture compared to YOLOv5, particularly in the head. YOLOv8 uses a decoupled head instead of a coupled one in YOLOv5. This allows the model to process each loss component independently, improving the model’s overall accuracy. Another notable change, but smaller, is the modified CSP layer, now called the C2f module \cite{terven2023comprehensive}. Another major change in the approach to prediction is the use of an anchor-free strategy. This reduces the computation complexity \cite{roboflowWhatYOLOv8} and compensates for the increasing number of parameters of the model \cite{githubGitHubUltralyticsultralytics}.
 
 \begin{figure*}
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{assets/Capture3.jpg}
-    \caption{Architecture of YOLOv8.}
-    \label{fig:picture3}
-\end{center}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/YOLO3.jpg}
+        \caption{Architecture of YOLOv8.}
+        \label{fig:picture3}
+    \end{center}
 \end{figure*}
 
 %%%%%%%%% INSIGHTFUL COMPARISON
@@ -342,10 +346,9 @@ When assessing the performance of YOLO, ResNet, VGGNet, and AlexNet in image cla
 
 We would like to express our deepest appreciation to all those who provided us the possibility to complete this report. A special gratitude we give to Dr. Le Trong Nhan, whose contribution in stimulating suggestions and encouragement, helped us to coordinate our project especially in writing this report.
 
-
-{\small
-\bibliographystyle{ieee}
-\bibliography{bibliography.bib}
-}
+    {\small
+        \bibliographystyle{ieee}
+        \bibliography{bibliography.bib}
+    }
 
 \end{document}
