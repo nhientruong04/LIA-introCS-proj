@@ -8,3 +8,4 @@ runs/
 *.pth
 cifar10
 *.pkl
+data/
