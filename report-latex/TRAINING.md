@@ -191,7 +191,7 @@ Dưới đây là các format text để dùng trong report latex.
 |Code|`\texttt{}`|`This is code text`|
 |Url|`\url{}`|<https://fb.com/Fuisloy>|
 
-> *Mình cố gắng format sao cho đúng với các paper official (Alexnet, Resnet, VGG,...)*
+> *Mình cố gắng format sao cho đúng với các paper official (Alexnet, ResNet, VGG,...)*
 
 ### 4. Citation
 
