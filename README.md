@@ -1,5 +1,7 @@
 # Deep Learning for Image Classification
 
+![](assets/cover.png)
+
 The train.py script is used for training a machine learning model. It uses command-line arguments for configuration. Here's how you can use it:
 
 ```bash
