@@ -9,3 +9,4 @@ runs/
 cifar10
 *.pkl
 data/
+ref.md
