@@ -1,8 +1,15 @@
-# Deep Learning for Image Classification
-
+# CNN Model Comparison Pipeline
 ![](assets/cover.png)
 
+This repository contains the training pipeline for comparing popular Convolutional Neural Network (CNN) models in our report, including AlexNet, VGGNet, YOLO, and ResNet.
+
+**Note: YOLO is not included in this pipeline, please refer to its official repository for training.**
+
 The `train.py` script is used for training a machine learning model. It uses command-line arguments for configuration. Here's how you can use it:
+
+# How to use?
+## Training
+For training, use the `train.py` as below in your CLI
 
 ```bash
 python train.py -m <model> -ds <dataset> -bs <batch_size> -e <epochs> --resume <resume> --log <log> --lr <learning_rate> --shuffle <shuffle> --workers <workers>
