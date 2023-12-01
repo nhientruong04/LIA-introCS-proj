@@ -66,7 +66,7 @@ For alternative installation methods including [Conda](https://anaconda.org/cond
 
 </details>
 
-### <div align="center">Usage</div>
+## <div align="center">Usage</div>
 
 #### Training
 
@@ -116,6 +116,8 @@ Shout out to all of the team members who have contributed to this project:
 - [**Truong Hao Nhien**]() - 10422062
 - [**Nguyen Song Thien Phuc**]() - 10422067
 - [**Bui Duc Xuan**]() - 10422085
+
+We would also like to thank our instructor [**Dr. Le Trong Nhan**]() for his guidance and support throughout the course.
 
 ## <div align="center">License</div>
 
