@@ -5,7 +5,7 @@
       <img width="100%" src="assets/cover.png" alt="banner" style="border-radius: 22px"></a>
   </p>
 
-# <div align="center">CNN Model Comparison Pipeline</div>
+<!-- # <div align="center">CNN Model Comparison Pipeline</div> -->
 
 <div>
 
